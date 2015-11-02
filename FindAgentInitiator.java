@@ -46,7 +46,7 @@ public class FindAgentInitiator extends ContractNetInitiator
 			cfps.add(msg);
 		}
 		
-		System.out.println(agent.getLocalName() + ": wysłano CFP.");
+		System.out.println(agent.getLocalName() + ": CFP sent.");
 		
 		return cfps;
 	}
@@ -62,7 +62,7 @@ public class FindAgentInitiator extends ContractNetInitiator
 			
 			if (units == 0 || agent.getArbitrator() == null) {
 				reply.setPerformative(ACLMessage.REJECT_PROPOSAL);
-				System.out.println(agent.getLocalName() + ": poszedł reject.");
+				System.out.println(agent.getLocalName() + ": reject sent.");
 			}
 			else {
 				agent.newBattle();
@@ -76,7 +76,7 @@ public class FindAgentInitiator extends ContractNetInitiator
 				
 				agent.fillMessageContent(reply, content);
 				
-				System.out.println(agent.getLocalName() + ": poszedł accept.");
+				System.out.println(agent.getLocalName() + ": accept sent.");
 			}
 			
 			acceptances.add(reply);
@@ -87,27 +87,27 @@ public class FindAgentInitiator extends ContractNetInitiator
 	{
 		agent.giveBackUnits(units);
 		agent.battleFinished();
-		System.out.println(agent.getLocalName() + ": bitwa się nie udała.");
+		System.out.println(agent.getLocalName() + ": something went wrong with the battle.");
 	}
 	
 	protected void handleInform(ACLMessage msg)
 	{
 		int res = agent.extractBlottoResult(msg);
 		//agent.addResult(agent.getLocalName(), msg.getSender().getLocalName(), res);
-		System.out.println(agent.getLocalName() + " i " + msg.getSender().getLocalName() + ": " + res);
+		System.out.println(agent.getLocalName() + " and " + msg.getSender().getLocalName() + ": " + res);
 		agent.battleFinished();
 		
-		System.out.println(agent.getLocalName() + ": wynik bitwy = " + res);
+		System.out.println(agent.getLocalName() + ": battle result = " + res);
 	}
 	
 	public int onEnd()
 	{
 		if (agent.getUnits() == 0 && agent.getRemainingBattles() == 0) {
-			System.out.println(agent.getLocalName() + ": KONIEC.");
+			System.out.println(agent.getLocalName() + ": FINISHED.");
 			agent.doDelete();	
 		}
 		else {
-			System.out.println(agent.getLocalName() + ": następny CNP będzie leciał.");
+			System.out.println(agent.getLocalName() + ": next CNP is going to be sent.");
 			agent.addBehaviour(new WakerBehaviour(agent, 1000) {
 				protected void onWake() {
 					agent.addBehaviour(new FindAgentInitiator(myAgent, new ACLMessage(ACLMessage.CFP)));

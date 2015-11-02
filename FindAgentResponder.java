@@ -34,7 +34,7 @@ public class FindAgentResponder extends ContractNetResponder
 		
 		if (units == 0 || units < minUnits) {
 			reply.setPerformative(ACLMessage.REFUSE);
-			System.out.println(agent.getLocalName() + ": poszedł refuse.");
+			System.out.println(agent.getLocalName() + ": refuse sent.");
 		}
 		else {
 			agent.newBattle();
@@ -48,7 +48,7 @@ public class FindAgentResponder extends ContractNetResponder
 			
 			agent.fillMessageContent(reply, content);
 			
-			System.out.println(agent.getLocalName() + ": poszedł propose.");
+			System.out.println(agent.getLocalName() + ": propose sent.");
 		}
 		
 		return reply;
@@ -58,6 +58,6 @@ public class FindAgentResponder extends ContractNetResponder
 	{
 		agent.giveBackUnits(units);
 		agent.battleFinished();
-		System.out.println(agent.getLocalName() + ": odrzucono propose'a.");
+		System.out.println(agent.getLocalName() + ": proposed has been rejected.");
 	}
 }

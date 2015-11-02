@@ -41,7 +41,7 @@ public class PlayBlottoInitiator extends SimpleAchieveREInitiator
 		
 		agent.fillMessageContent(msg, new GetBlottoResult(new Allocation(list)));
 		
-		System.out.println(agent.getLocalName() + ": poszedł request do Arbitra.");
+		System.out.println(agent.getLocalName() + ": request sent to the arbiter.");
 		
 		return msg;
 	}
@@ -62,7 +62,7 @@ public class PlayBlottoInitiator extends SimpleAchieveREInitiator
 		agent.giveBackUnits(responder.getUnits());
 		agent.battleFinished();
 		
-		System.out.println(agent.getLocalName() + ": refuse od Arbitra.");
+		System.out.println(agent.getLocalName() + ": refuse from the arbiter.");
 	}
 	
 	protected void handleFailure(ACLMessage msg)
@@ -71,7 +71,7 @@ public class PlayBlottoInitiator extends SimpleAchieveREInitiator
 		agent.giveBackUnits(responder.getUnits());
 		agent.battleFinished();
 		
-		System.out.println(agent.getLocalName() + ": failure od Arbitra.");
+		System.out.println(agent.getLocalName() + ": failure from the arbiter.");
 	}
 	
 	protected void handleInform(ACLMessage msg)
@@ -82,6 +82,6 @@ public class PlayBlottoInitiator extends SimpleAchieveREInitiator
 		
 		agent.battleFinished();
 		
-		System.out.println(agent.getLocalName() + ": inform od Arbitra.");
+		System.out.println(agent.getLocalName() + ": inform from the arbiter.");
 	}
 }

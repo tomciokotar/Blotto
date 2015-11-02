@@ -106,7 +106,7 @@ public class BlottoPlayerAgent extends Agent
 			if (res.length > 0)
 				arbitrator = res[0].getName();
 			else
-				System.out.println(getLocalName() + ": brak sędziego.");
+				System.out.println(getLocalName() + ": no arbiter found.");
 		}
 		catch (FIPAException e) {
 			e.printStackTrace();
@@ -139,7 +139,7 @@ public class BlottoPlayerAgent extends Agent
 			addBehaviour(new FindAgentResponder(this,
 						ContractNetResponder.createMessageTemplate("fipa-contract-net")));
 			
-			System.out.println(getLocalName() + ": nowy responder - nr " + responders);
+			System.out.println(getLocalName() + ": new responder with number " + responders);
 		}
 	}
 	
@@ -162,7 +162,7 @@ public class BlottoPlayerAgent extends Agent
 		
 		newResponder();
 		
-		System.out.println(getLocalName() + ": poszedł setup.");
+		System.out.println(getLocalName() + ": setup sent.");
 	}
 	
 	protected void takeDown()
@@ -174,12 +174,12 @@ public class BlottoPlayerAgent extends Agent
 			e.printStackTrace();
 		}
 		
-		/*System.out.println(getLocalName() + " - wyniki:");
+		/*System.out.println(getLocalName() + " - results:");
 		for (BattleResult res: battles)
-			System.out.println(res.getMyName() + " i " + res.getPartnersName()
-											   + ": " + res.getResult() + " pkt");
+			System.out.println(res.getMyName() + " and " + res.getPartnersName()
+											   + ": " + res.getResult() + " points");
 											   
-		System.out.println("Sumarycznie: " + score);*/
+		System.out.println("In overall: " + score);*/
 	}
 	
 	public Action extractCfpAction(ACLMessage msg)
